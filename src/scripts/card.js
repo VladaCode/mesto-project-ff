@@ -32,3 +32,13 @@ export function createCard(dataCard, deleteCallback, likeCard, openImagePopup) {
   
     return cardElement;  
   }  
+
+  //Функция удаление карточек  
+export function deleteCard(cardElement) {  
+  cardElement.remove();  
+}  
+
+//Функция обработчика лайка
+export function likeCard(likeButton) {
+  likeButton.classList.toggle('card__like-button_is-active');
+}
