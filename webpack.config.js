@@ -28,9 +28,19 @@ module.exports = {
                 exclude: '/node_modules/'       // исключает папку node_modules, файлы в ней обрабатывать не нужно
             },
             {
-                test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,                 // регулярное выражение, которое ищет все файлы с такими расширениями
-                type: 'asset/resource'
-            },
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name].[hash][ext]',
+           }
+           },
+           {
+                test: /\.(woff(2)?|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[name].[hash][ext]',
+                }
+           },
             {
                 test: /\.css$/,                 // применять это правило только к CSS-файлам
                 use: [MiniCssExtractPlugin.loader, {    // при обработке этих файлов нужно использовать
