@@ -7,7 +7,7 @@ export function openPopup(popup) {
 // Функция для закрытия модального окна
 export function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
-  document.addEventListener("keydown", escClose); // Удаляем обработчик нажатия Esc
+  document.removeEventListener("keydown", escClose); // Удаляем обработчик нажатия Esc
 }
 
 // Метод закрытия попапа по оверлею
