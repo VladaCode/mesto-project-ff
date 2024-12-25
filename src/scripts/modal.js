@@ -4,7 +4,7 @@ export function openPopup(popup) {
   document.addEventListener("keydown", escClose); // Добавляем обработчик нажатия Esc
 }
 
-// Функция для закрытия модального окна
+// Функция для открытие модального окна 
 export function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", escClose); // Удаляем обработчик нажатия Esc
@@ -30,3 +30,5 @@ export function escClose(evt) {
     }
   }
 }
+
+

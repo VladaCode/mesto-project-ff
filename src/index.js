@@ -48,7 +48,7 @@ function generateCards(cards, del, like, openImage) {
      
 }  
 
-// Открываем модальное окно для изображение
+// Открываем модальное окно для изображение 
 function openImagePopup(dataCard) {
   // Устанавливаем src и alt для изображения в модальном окне
   imagePopupCard.src = dataCard.link;  
