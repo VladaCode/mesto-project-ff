@@ -15,7 +15,9 @@
   </header>
   <main class="content">
     <section class="profile page__section">
-      <div class="profile__image" style="background-image: url(<%=require('./images/avatar.jpg')%>)"></div>
+      <div class="profile__image" style="background-image: url(<%=require('./images/avatar.jpg')%>)">
+        <button class="profile__edit-avatar-button" type="button"></button>
+      </div>
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button class="profile__edit-button" type="button"></button>
@@ -33,13 +35,35 @@
       © 2021 Mesto Russia
     </p>
   </footer>
-  <div class="popup popup_type_edit popup_is-animated">
+  <div class="popup popup_type_edit popup_is-animated ">
     <div class="popup__content" >
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form" name="edit-profile">
-        <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя" required>
-        <input type="text" name="description" class="popup__input popup__input_type_description" placeholder="Занятие" required>
+      <form class="popup__form" name="edit-profile" novalidate>
+        <input 
+        required
+        id="profile_name"
+        type="text" 
+        name="name"  
+        class="popup__input popup__input_type_name" 
+        placeholder="Имя" 
+        minlength="2"
+        maxlength="40" 
+        pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+        data-error-message="Разрешены только латинские и кириллические буквы, знаки дефиса и пробелы">
+        <span class="form__input-error profile_name-error"></span>
+        <input 
+        required
+        id="profile_description"
+        type="text" 
+        name="description" 
+        class="popup__input popup__input_type_description" 
+        placeholder="Занятие" 
+        minlength="2" 
+        maxlength="200"
+        pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+        data-error-message="Разрешены только латинские и кириллические буквы, знаки дефиса и пробелы"> 
+        <span class="form__input-error profile_description-error"></span>
         <button type="submit" class="button popup__button">Сохранить</button>
       </form>
     </div>
@@ -48,9 +72,25 @@
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" name="new-place">
-        <input type="text" name="place-name" class="popup__input popup__input_type_card-name" placeholder="Название" required>
-        <input type="url" name="link" class="popup__input popup__input_type_url " placeholder="Ссылка на картинку" required>
+      <form class="popup__form" name="new-place" novalidate>
+        <input
+        id="place_name" 
+        type="text" 
+        name="place-name" 
+        class="popup__input popup__input_type_card-name" 
+        placeholder="Название"
+        minlength="2" 
+        maxlength="20" 
+        required>
+        <span class="form__input-error place_name-error"></span>
+        <input
+        id="place_url" 
+        type="url"
+        name="link" 
+        class="popup__input popup__input_type_url" 
+        placeholder="Ссылка на картинку"
+        required>
+        <span class="form__input-error place_url-error"></span>
         <button type="submit" class="button popup__button">Сохранить</button>
       </form>
     </div>
@@ -64,16 +104,45 @@
   </div>
 </div>
 
+  <!-- Попап для  редактирование профиля-->
+<div class="popup popup_type_edit-avatar popup_is-animated">
+  <div class="popup__content">
+    <button type="button" class="popup__close"></button>
+    <h3 class="popup__title">Обновить аватар</h3>
+    <form class="popup__form" name="edit-avatar" novalidate>
+      <input 
+      required
+      id="avatar_link"
+      type="url" 
+      name="avatar"  
+      class="popup__input popup__input_type_avatar" 
+      placeholder="Ссылка на новый аватар">
+      <span class="form__input-error avatar_link-error"></span>
+      <button type="submit" class="button popup__button">Сохранить</button>
+    </form>
+  </div>
+</div>
 
+  <!-- Попап для удаления карточки -->
+  <div class="popup popup_type_delete">
+    <div class="popup__content">
+      <button type="button" class="popup__close"></button>
+      <h3 class="popup__title">Вы уверены?</h3>
+      <button class="popup__button popup__button_confirm">Да</button>
+    </div>
+  </div>
+</div>
 
 <template id="card-template">
   <li class="places__item card">
     <img class="card__image" src="" alt="" />
     <button type="button" class="card__delete-button"></button>
     <div class="card__description">
-      <h2 class="card__title">
-      </h2>
-      <button type="button" class="card__like-button "></button>
+      <h2 class="card__title"></h2>
+      <div class="like-container"> 
+        <button type="button" class="card__like-button"></button>
+        <span class="card__like-count">0</span> <!-- Элемент для отображения количества лайков -->
+      </div>
     </div>
   </li>
 </template>

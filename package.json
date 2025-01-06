@@ -6,7 +6,7 @@
     "build": "webpack --mode production",
     "dev": "webpack serve",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d 5.mesto-project-ff2"
+    "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",

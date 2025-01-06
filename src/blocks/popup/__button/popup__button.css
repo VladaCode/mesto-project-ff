@@ -19,6 +19,18 @@
   cursor: pointer;
 }
 
+.form__submit_inactive{
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, .2);
+  color: rgba(0, 0, 0, .2);
+  cursor: not-allowed; 
+}
+
+.form__submit_inactive:hover{
+  background: #ffffff;
+  cursor: auto;
+}
+
 @media screen and (max-width: 568px) {
   .popup__button {
     font-size: 14px;
