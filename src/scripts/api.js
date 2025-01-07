@@ -7,18 +7,21 @@ const config = {
   }
 };
 
+// Функция для обработки ответа сервера
+const getResponseData = (res) => {
+  if (!res.ok) {
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+  return res.json();
+};
+
 // Функция для получения информации о текущем пользователе
 export const getUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, { // Выполняем GET-запрос к API
     method: 'GET', // Метод запроса
     headers: config.headers // Заголовки запроса
   })
-  .then(res => {
-    if (res.ok) { // Проверяем, успешен ли ответ
-      return res.json(); // Если да, возвращаем данные в формате JSON
-    }
-    return Promise.reject(`Ошибка: ${res.status}`); // В случае ошибки, возвращаем сообщение об ошибке
-  });
+  .then(getResponseData);
 };
 
 // Функция для получения начального списка карточек
@@ -27,12 +30,7 @@ export const getInitialCards = () => {
     method: 'GET', // Метод запроса
     headers: config.headers // Заголовки запроса
   })
-  .then(res => {
-    if (res.ok) { // Проверяем, успешен ли ответ
-      return res.json(); // Если да, возвращаем данные в формате JSON
-    }
-    return Promise.reject(`Ошибка: ${res.status}`); // В случае ошибки, возвращаем сообщение об ошибке
-  });
+  .then(getResponseData);
 };
 
 // Функция для обновления информации о пользователе
@@ -42,12 +40,7 @@ export const updateUserInfo = (name, about) => {
     headers: config.headers, // Заголовки запроса
     body: JSON.stringify({ name, about }) // Передаем обновленные данные в формате JSON
   })
-  .then(res => {
-    if (res.ok) { // Проверяем, успешен ли ответ
-      return res.json(); // Если да, возвращаем данные в формате JSON
-    }
-    return Promise.reject(`Ошибка: ${res.status}`); // В случае ошибки, возвращаем сообщение об ошибке
-  });
+  .then(getResponseData);
 };
 
 // Функция для обновления аватара пользователя
@@ -57,12 +50,7 @@ export const updateAvatar = (avatar) => {
     headers: config.headers, // Заголовки запроса
     body: JSON.stringify({ avatar }) // Передаем новый аватар в формате JSON
   })
-  .then(res => {
-    if (res.ok) { // Проверяем, успешен ли ответ
-      return res.json(); // Если да, возвращаем данные в формате JSON
-    }
-    return Promise.reject(`Ошибка: ${res.status}`); // В случае ошибки, возвращаем сообщение об ошибке
-  });
+  .then(getResponseData);
 };
 
 // Функция для добавления новой карточки
@@ -72,12 +60,7 @@ export const addCard = (name, link) => {
     headers: config.headers, // Заголовки запроса
     body: JSON.stringify({ name, link }) // Передаем данные карточки в формате JSON
   })
-  .then(res => {
-    if (res.ok) { // Проверяем, успешен ли ответ
-      return res.json(); // Если да, возвращаем данные в формате JSON
-    }
-    return Promise.reject(`Ошибка: ${res.status}`); // В случае ошибки, возвращаем сообщение об ошибке
-  });
+  .then(getResponseData);
 };
 
 // Функция для удаления карточки
@@ -86,12 +69,7 @@ export const deleteCard = (cardId) => {
     method: 'DELETE', // Метод запроса
     headers: config.headers // Заголовки запроса
   })
-  .then(res => {
-    if (res.ok) { // Проверяем, успешен ли ответ
-      return res.json(); // Если да, возвращаем данные в формате JSON
-    }
-    return Promise.reject(`Ошибка: ${res.status}`); // В случае ошибки, возвращаем сообщение об ошибке
-  });
+  .then(getResponseData);
 };
 
 // Функция для изменения статуса лайка карточки
@@ -100,11 +78,6 @@ export const changeLikeCardStatus = (cardId, isLiked) => {
     method: isLiked ? 'DELETE' : 'PUT', // Если карточка уже лайкнута, используем DELETE, иначе PUT
     headers: config.headers // Заголовки запроса
   })
-  .then(res => {
-    if (res.ok) { // Проверяем, успешен ли ответ
-      return res.json(); // Если да, возвращаем данные в формате JSON
-    }
-    return Promise.reject(`Ошибка: ${res.status}`); // В случае ошибки, возвращаем сообщение об ошибке
-  });
+  .then(getResponseData);
 };
 

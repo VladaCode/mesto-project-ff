@@ -103,11 +103,10 @@ const showInputError = (formElement, inputElement, errorMessage, validationConfi
     const buttonElement = formElement.querySelector(validationConfig.submitButtonSelector);
     
     inputList.forEach((inputElement) => {
-      hideInputError(formElement, inputElement, validationConfig.inputErrorClass);
+      hideInputError(formElement, inputElement, validationConfig);
     });
     // Сброс состояния кнопки
-    buttonElement.disabled = true;
-    buttonElement.classList.add(validationConfig.inactiveButtonClass);
+    toggleButtonState(inputList, buttonElement, validationConfig);
   };
   
 export{enableValidation, clearValidation}  
