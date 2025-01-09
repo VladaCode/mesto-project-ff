@@ -23,7 +23,6 @@ https://vladacode.github.io/mesto-project-ff/
 - **Babel**: Транспиляция современного JavaScript в совместимый с более старыми браузерами.
 - **PostCSS**: Обработка CSS файлов.
 - **Autoprefixer**: Добавление вендорных префиксов к CSS свойствам.
-- **CSSNano**: Минификация CSS файлов.
 
 ## Структура проекта
 
